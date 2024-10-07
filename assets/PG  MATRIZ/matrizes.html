@@ -3,9 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calculadora de Matrizes</title>
 </head>
 <body>
-    <h1>MATRIZES - DESENVOLVENDO</h1>
+    <h1>Operações com Matrizes</h1>
+
+    <form id="matrixForm">
+        <h3>Matriz 1 (2x2)</h3>
+        <input type="number" id="m1r1c1" placeholder="Linha 1, Coluna 1">
+        <input type="number" id="m1r1c2" placeholder="Linha 1, Coluna 2"><br><br>
+        <input type="number" id="m1r2c1" placeholder="Linha 2, Coluna 1">
+        <input type="number" id="m1r2c2" placeholder="Linha 2, Coluna 2"><br><br>
+
+        <h3>Matriz 2 (2x2)</h3>
+        <input type="number" id="m2r1c1" placeholder="Linha 1, Coluna 1">
+        <input type="number" id="m2r1c2" placeholder="Linha 1, Coluna 2"><br><br>
+        <input type="number" id="m2r2c1" placeholder="Linha 2, Coluna 1">
+        <input type="number" id="m2r2c2" placeholder="Linha 2, Coluna 2"><br><br>
+
+        <label for="operation">Operação:</label>
+        <select id="operation">
+            <option value="matrixMultiplication">Multiplicação de Matrizes</option>
+            <option value="scalarMultiplication">Multiplicação por Escalar</option>
+        </select><br><br>
+
+        <label for="scalar">Escalar (para multiplicação por escalar):</label>
+        <input type="number" id="scalar" placeholder="Insira o escalar"><br><br>
+
+        <button type="submit">Calcular</button>
+    </form>
+
+    <h2>Resultado:</h2>
+    <pre id="result"></pre>
+
+    <script src="app.js"></script>
 </body>
 </html>

@@ -1,11 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calculadora de Derivadas e Integrais</title>
+    <!-- Inclui a biblioteca Math.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.min.js"></script>
 </head>
 <body>
-    <h1>DERIVADAS - DESENVOLVIMENTO</h1>
+    <h1>Calculadora de Derivadas e Integrais</h1>
+
+    <form id="calculusForm">
+        <label for="operation">Escolha a operação:</label>
+        <select id="operation">
+            <option value="derivative">Derivada</option>
+            <option value="integral">Integral</option>
+        </select><br><br>
+
+        <label for="function">Função (em termos de x):</label>
+        <input type="text" id="function" placeholder="Ex: 3*x^2 + 2*x" required><br><br>
+
+        <label for="point">Ponto (opcional para derivadas ou integrais definidas):</label>
+        <input type="number" id="point" placeholder="Ex: 1"><br><br>
+
+        <label for="intervalStart">Início do intervalo (opcional para integrais definidas):</label>
+        <input type="number" id="intervalStart" placeholder="Ex: 0"><br><br>
+
+        <label for="intervalEnd">Fim do intervalo (opcional para integrais definidas):</label>
+        <input type="number" id="intervalEnd" placeholder="Ex: 2"><br><br>
+
+        <button type="submit">Calcular</button>
+    </form>
+
+    <h2>Resultado:</h2>
+    <pre id="result"></pre>
+
+    <script src="app.js"></script>
 </body>
 </html>
