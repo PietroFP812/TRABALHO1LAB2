@@ -1,11 +1,70 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Matrizes</title>
+    <link rel="stylesheet" type="text/css" href="../assets/style.css">
+    <script src="../assets/func.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .matrix-input {
+            margin-bottom: 20px;
+        }
+        input {
+            width: 50px;
+            margin: 2px;
+            text-align: center;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <h1>MATRIZES - DESENVOLVENDO</h1>
+    <h1>Soma de Matrizes</h1>
+    <div class="matrix-input">
+        <h3>Matriz A</h3>
+        <input type="number" id="a11" placeholder="A11">
+        <input type="number" id="a12" placeholder="A12"><br>
+        <input type="number" id="a21" placeholder="A21">
+        <input type="number" id="a22" placeholder="A22">
+    </div>
+
+    <div class="matrix-input">
+        <h3>Matriz B</h3>
+        <input type="number" id="b11" placeholder="B11">
+        <input type="number" id="b12" placeholder="B12"><br>
+        <input type="number" id="b21" placeholder="B21">
+        <input type="number" id="b22" placeholder="B22">
+    </div>
+
+    <button onclick="calcularSoma()">Somar Matrizes</button>
+
+    <div class="result" id="resultado"></div>
+
+    <script>
+        function calcularSoma() {
+            const matrizA = [
+                [Number(document.getElementById('a11').value), Number(document.getElementById('a12').value)],
+                [Number(document.getElementById('a21').value), Number(document.getElementById('a22').value)]
+            ];
+
+            const matrizB = [
+                [Number(document.getElementById('b11').value), Number(document.getElementById('b12').value)],
+                [Number(document.getElementById('b21').value), Number(document.getElementById('b22').value)]
+            ];
+
+            try {
+                const resultado = somarMatrizes(matrizA, matrizB);
+                document.getElementById('resultado').innerText = `Resultado da soma: ${JSON.stringify(resultado)}`;
+            } catch (error) {
+                document.getElementById('resultado').innerText = error.message;
+            }
+        }
+    </script>
 </body>
 </html>
