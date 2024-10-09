@@ -1,96 +1,41 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Vetores</title>
-    <link rel="stylesheet" type="text/css" href="../assets/style.css">
-    <script src="../assets/PG VETORES/func.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .vector-input {
-            margin-bottom: 20px;
-        }
-        input {
-            width: 50px;
-            margin: 2px;
-            text-align: center;
-        }
-        .result {
-            margin-top: 20px;
-            font-weight: bold;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Vetores</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Operações com Vetores</h1>
+    <h1>Calculadora de Vetores</h1>
 
-    <div class="vector-input">
-        <h3>Vetor A</h3>
-        <input type="number" id="a1" placeholder="A1">
-        <input type="number" id="a2" placeholder="A2">
-        <input type="number" id="a3" placeholder="A3">
+    <form id="vectorSizeForm">
+        <label for="size">Tamanho do Vetor:</label>
+        <input type="number" id="size" min="1" required>
+
+        <button type="button" id="generateVectorsBtn">Gerar Vetores</button>
+    </form>
+
+    <div id="vectorContainer" style="display:none;">
+        <h3>Vetor 1:</h3>
+        <div id="vector1"></div>
+
+        <h3>Vetor 2:</h3>
+        <div id="vector2"></div>
+
+        <label for="operation">Operação:</label>
+        <select id="operation">
+            <option value="addition">Soma</option>
+            <option value="subtraction">Subtração</option>
+            <option value="dotProduct">Produto Escalar</option>
+        </select>
+
+        <button type="submit" id="calculateBtn">Calcular</button>
     </div>
 
-    <div class="vector-input">
-        <h3>Vetor B</h3>
-        <input type="number" id="b1" placeholder="B1">
-        <input type="number" id="b2" placeholder="B2">
-        <input type="number" id="b3" placeholder="B3">
-    </div>
+    <h2>Resultado:</h2>
+    <div id="result"></div>
 
-    <button onclick="calcularMagnitude()">Calcular Magnitude do Vetor A</button>
-    <button onclick="somarVetores()">Somar Vetores A e B</button>
-    <button onclick="subtrairVetores()">Subtrair Vetores A e B</button>
-
-    <div class="result" id="resultado"></div>
-
-    <script>
-        function calcularMagnitude() {
-            const vetorA = [
-                Number(document.getElementById('a1').value),
-                Number(document.getElementById('a2').value),
-                Number(document.getElementById('a3').value)
-            ];
-            const magnitude = calcularMagnitude(vetorA);
-            document.getElementById('resultado').innerText = `Magnitude do Vetor A: ${magnitude}`;
-        }
-
-        function somarVetores() {
-            const vetorA = [
-                Number(document.getElementById('a1').value),
-                Number(document.getElementById('a2').value),
-                Number(document.getElementById('a3').value)
-            ];
-
-            const vetorB = [
-                Number(document.getElementById('b1').value),
-                Number(document.getElementById('b2').value),
-                Number(document.getElementById('b3').value)
-            ];
-
-            const resultado = somarVetores(vetorA, vetorB);
-            document.getElementById('resultado').innerText = `Resultado da soma: ${JSON.stringify(resultado)}`;
-        }
-
-        function subtrairVetores() {
-            const vetorA = [
-                Number(document.getElementById('a1').value),
-                Number(document.getElementById('a2').value),
-                Number(document.getElementById('a3').value)
-            ];
-
-            const vetorB = [
-                Number(document.getElementById('b1').value),
-                Number(document.getElementById('b2').value),
-                Number(document.getElementById('b3').value)
-            ];
-
-            const resultado = subtrairVetores(vetorA, vetorB);
-            document.getElementById('resultado').innerText = `Resultado da subtração: ${JSON.stringify(resultado)}`;
-        }
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>

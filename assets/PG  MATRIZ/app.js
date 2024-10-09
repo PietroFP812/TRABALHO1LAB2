@@ -1,56 +1,126 @@
-// Pegando o formulário e resultado pelo ID
-const matrixForm = document.getElementById('matrixForm');
-const resultDisplay = document.getElementById('result');
+// Função para criar campos para inserir valores das matrizes
+function generateMatrix(matrixId, rows, cols) {
+    const matrixDiv = document.getElementById(matrixId);
+    matrixDiv.innerHTML = ''; // Limpa qualquer conteúdo anterior
 
-// Função para multiplicar duas matrizes 2x2
-function multiplyMatrices(m1, m2) {
-    return [
-        [
-            m1[0][0] * m2[0][0] + m1[0][1] * m2[1][0], 
-            m1[0][0] * m2[0][1] + m1[0][1] * m2[1][1]
-        ],
-        [
-            m1[1][0] * m2[0][0] + m1[1][1] * m2[1][0], 
-            m1[1][0] * m2[0][1] + m1[1][1] * m2[1][1]
-        ]
-    ];
+    const table = document.createElement('table');
+    for (let i = 0; i < rows; i++) {
+        const row = document.createElement('tr');
+        for (let j = 0; j < cols; j++) {
+            const cell = document.createElement('td');
+            const input = document.createElement('input');
+            input.type = 'number';
+            input.classList.add(`${matrixId}-cell`);
+            input.dataset.row = i;
+            input.dataset.col = j;
+            cell.appendChild(input);
+            row.appendChild(cell);
+        }
+        table.appendChild(row);
+    }
+    matrixDiv.appendChild(table);
 }
 
-// Função para multiplicar uma matriz por um escalar
-function multiplyByScalar(matrix, scalar) {
-    return matrix.map(row => row.map(value => value * scalar));
+// Função para capturar os valores das matrizes
+function getMatrixValues(matrixId, rows, cols) {
+    const matrix = [];
+    const inputs = document.querySelectorAll(`.${matrixId}-cell`);
+    for (let i = 0; i < rows; i++) {
+        const row = [];
+        for (let j = 0; j < cols; j++) {
+            const value = parseFloat(inputs[i * cols + j].value);
+            row.push(value);
+        }
+        matrix.push(row);
+    }
+    return matrix;
 }
 
-// Função para exibir a matriz no formato adequado
-function formatMatrix(matrix) {
-    return matrix.map(row => row.join(' ')).join('\n');
+// Função para somar matrizes
+function addMatrices(matrix1, matrix2, rows, cols) {
+    const result = [];
+    for (let i = 0; i < rows; i++) {
+        const row = [];
+        for (let j = 0; j < cols; j++) {
+            row.push(matrix1[i][j] + matrix2[i][j]);
+        }
+        result.push(row);
+    }
+    return result;
 }
 
-// Adiciona um evento de submit ao formulário
-matrixForm.addEventListener('submit', function(event) {
-    event.preventDefault();  // Evita o comportamento padrão de recarregar a página
+// Função para subtrair matrizes
+function subtractMatrices(matrix1, matrix2, rows, cols) {
+    const result = [];
+    for (let i = 0; i < rows; i++) {
+        const row = [];
+        for (let j = 0; j < cols; j++) {
+            row.push(matrix1[i][j] - matrix2[i][j]);
+        }
+        result.push(row);
+    }
+    return result;
+}
 
-    // Obtém os valores das entradas e transforma em matrizes
-    const m1 = [
-        [parseFloat(document.getElementById('m1r1c1').value), parseFloat(document.getElementById('m1r1c2').value)],
-        [parseFloat(document.getElementById('m1r2c1').value), parseFloat(document.getElementById('m1r2c2').value)]
-    ];
-    const m2 = [
-        [parseFloat(document.getElementById('m2r1c1').value), parseFloat(document.getElementById('m2r1c2').value)],
-        [parseFloat(document.getElementById('m2r2c1').value), parseFloat(document.getElementById('m2r2c2').value)]
-    ];
+// Função para multiplicar matrizes
+function multiplyMatrices(matrix1, matrix2, rows1, cols1, cols2) {
+    const result = [];
+    for (let i = 0; i < rows1; i++) {
+        const row = [];
+        for (let j = 0; j < cols2; j++) {
+            let sum = 0;
+            for (let k = 0; k < cols1; k++) {
+                sum += matrix1[i][k] * matrix2[k][j];
+            }
+            row.push(sum);
+        }
+        result.push(row);
+    }
+    return result;
+}
 
+// Evento para gerar as matrizes
+document.getElementById('generateMatricesBtn').addEventListener('click', function() {
+    const rows = parseInt(document.getElementById('rows').value);
+    const cols = parseInt(document.getElementById('cols').value);
+    
+    generateMatrix('matrix1', rows, cols);
+    generateMatrix('matrix2', rows, cols);
+    
+    document.getElementById('matrixContainer').style.display = 'block';
+});
+
+// Evento para calcular as operações
+document.getElementById('calculateBtn').addEventListener('click', function() {
+    const rows = parseInt(document.getElementById('rows').value);
+    const cols = parseInt(document.getElementById('cols').value);
     const operation = document.getElementById('operation').value;
-    let result;
 
-    // Verifica a operação escolhida
-    if (operation === 'matrixMultiplication') {
-        result = multiplyMatrices(m1, m2);
-    } else if (operation === 'scalarMultiplication') {
-        const scalar = parseFloat(document.getElementById('scalar').value);
-        result = multiplyByScalar(m1, scalar);  // Multiplica a primeira matriz pelo escalar
+    const matrix1 = getMatrixValues('matrix1', rows, cols);
+    const matrix2 = getMatrixValues('matrix2', rows, cols);
+    let result = [];
+
+    if (operation === 'addition') {
+        result = addMatrices(matrix1, matrix2, rows, cols);
+    } else if (operation === 'subtraction') {
+        result = subtractMatrices(matrix1, matrix2, rows, cols);
+    } else if (operation === 'multiplication') {
+        result = multiplyMatrices(matrix1, matrix2, rows, cols, cols);
     }
 
     // Exibe o resultado
-    resultDisplay.textContent = formatMatrix(result);
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = ''; // Limpa o resultado anterior
+
+    const table = document.createElement('table');
+    for (let i = 0; i < result.length; i++) {
+        const row = document.createElement('tr');
+        for (let j = 0; j < result[i].length; j++) {
+            const cell = document.createElement('td');
+            cell.textContent = result[i][j];
+            row.appendChild(cell);
+        }
+        table.appendChild(row);
+    }
+    resultDiv.appendChild(table);
 });
