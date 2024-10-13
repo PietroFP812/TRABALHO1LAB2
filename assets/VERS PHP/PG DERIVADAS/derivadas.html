@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Derivadas e Integrais</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            margin: 20px 0;
+        }
+        label, input, select {
+            margin: 10px 0;
+            display: block;
+        }
+        button {
+            margin-top: 20px;
+        }
+        #result {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+    <!-- Importando a biblioteca nerdamer -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nerdamer/1.1.11/nerdamer.all.min.js"></script>
+</head>
+<body>
+    <h1>Calculadora de Derivadas e Integrais</h1>
+
+    <form id="calcForm">
+        <label for="function">Função (em termos de x):</label>
+        <input type="text" id="function" placeholder="Exemplo: 3*x^2 + 2*x" required><br><br>
+
+        <label for="operation">Operação:</label>
+        <select id="operation">
+            <option value="derivative">Derivada</option>
+            <option value="integral">Integral</option>
+        </select><br><br>
+
+        <button type="submit">Calcular</button>
+    </form>
+
+    <h2>Resultado: <span id="result"></span></h2>
+
+    <script src="app.js"></script>
+</body>
+</html>

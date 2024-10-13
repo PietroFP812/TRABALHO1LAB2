@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Vetores</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Calculadora de Vetores</h1>
+
+    <form id="vectorSizeForm" method="post" action="calculate.php">
+        <label for="size">Tamanho do Vetor:</label>
+        <input type="number" id="size" name="size" min="1" required>
+
+        <button type="button" id="generateVectorsBtn">Gerar Vetores</button>
+    </form>
+
+    <div id="vectorContainer" style="display:none;">
+        <h3>Vetor 1:</h3>
+        <div id="vector1"></div>
+
+        <h3>Vetor 2:</h3>
+        <div id="vector2"></div>
+
+        <label for="operation">Operação:</label>
+        <select id="operation" name="operation">
+            <option value="addition">Soma</option>
+            <option value="subtraction">Subtração</option>
+            <option value="dotProduct">Produto Escalar</option>
+        </select>
+
+        <button type="submit" id="calculateBtn">Calcular</button>
+    </div>
+
+    <h2>Resultado:</h2>
+    <div id="result">
+        <?php
+        if (isset($_GET['result'])) {
+            echo htmlspecialchars($_GET['result']);
+        }
+        ?>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -4,9 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Simples</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            margin: 20px 0;
+        }
+        label, input, select {
+            margin: 10px 0;
+            display: block;
+        }
+        button {
+            margin-top: 20px;
+        }
+        #result {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Operações de Multiplicação e Divisão</h1>
+    <h1>Calculadora Simples</h1>
 
     <form id="calcForm">
         <label for="num1">Número 1:</label>
@@ -17,6 +36,8 @@
 
         <label for="operation">Operação:</label>
         <select id="operation">
+            <option value="addition">Soma</option>
+            <option value="subtraction">Subtração</option>
             <option value="multiplication">Multiplicação</option>
             <option value="division">Divisão</option>
         </select><br><br>
