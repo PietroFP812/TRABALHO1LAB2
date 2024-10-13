@@ -1,6 +1,9 @@
 // Função para criar campos para inserir valores dos vetores
 function generateVector(vectorId, size) {
+<<<<<<< HEAD:assets/VERS JS/PG VETORES/app.js
     console.time();
+=======
+>>>>>>> 3a54ecd7c1e3bf352fe0d2f1165f7f390d87aa4a:assets/PG VETORES/app.js
     const vectorDiv = document.getElementById(vectorId);
     vectorDiv.innerHTML = ''; // Limpa qualquer conteúdo anterior
 
@@ -17,8 +20,11 @@ function generateVector(vectorId, size) {
         inputContainer.appendChild(input);
     }
     vectorDiv.appendChild(inputContainer);
+<<<<<<< HEAD:assets/VERS JS/PG VETORES/app.js
 
     console.timeEnd();
+=======
+>>>>>>> 3a54ecd7c1e3bf352fe0d2f1165f7f390d87aa4a:assets/PG VETORES/app.js
 }
 
 // Função para capturar os valores dos vetores
